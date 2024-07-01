@@ -1,0 +1,86 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
+version: '3.4'
+
+services:
+  checkoutapi:
+    image: checkoutapi
+    build:
+      context: .
+      dockerfile: CheckoutAPI/Checkout.API/Dockerfile
+    networks:
+      - backend
+    ports:
+      - 5128:80
+  commentapi:
+    image: commentapi
+    build:
+      context: .
+      dockerfile: CommentAPI/Comment.API/Dockerfile
+    networks:
+      - backend
+    ports:
+      - 5045:80
+  likeapi:
+    image: likeapi
+    build:
+      context: .
+      dockerfile: AvaliacaoAPI/Like.API/Dockerfile
+    networks:
+      - backend
+    ports:
+      - 5148:80
+  # loginapi:
+  #   image: loginapi
+  #   build:
+  #     context: .
+  #     dockerfile: LoginAPI/Login.API/Dockerfile
+  #   networks:
+  #     - backend
+  #   ports:
+  #     - 5067:80
+  # managementapi:
+  #   image: managementapi
+  #   build:
+  #     context: .
+  #     dockerfile: GatwaryAPI/Management.API/Dockerfile
+  #   networks:
+  #     - backend
+  #   ports:
+  #     - 5190:80
+  productapi:
+    image: productapi
+    build:
+      context: .
+      dockerfile: ProductAPI/Product.API/Dockerfile
+    networks:
+      - backend
+    ports:
+      - 5113:80
+  dbpostgree:
+    container_name: postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: dodoca123
+      POSTGRES_USER: edlisboa
+      POSTGRES_DB: db_login
+      # POSTGRES_DB: db_jambushop
+    networks:
+      - backend
+    ports:
+      - 5432:5432
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 'edvandersonlisboa@hotmail.com'
+      PGADMIN_DEFAULT_PASSWORD:  'root'
+    ports:
+      - 5050:80
+    networks:
+      - backend
+networks:
+  backend: 
+    driver:
+      bridge

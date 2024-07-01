@@ -1,0 +1,21 @@
+{
+    "Routes":[
+        {
+            "UpstreamPathTemplate": "/jambushop/api/v1/login",
+            "UpstreamHttpMethod":["Get","Post","Put"],
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts":[
+                {
+                    "Host":"localhost",
+                    "Port":"5067"
+                }
+            ],
+            "DownstreamPathTemplate": "/api/v1/login"
+        }
+
+    ],
+    "GlobalConfiguration":{
+        "BaseUrl": "http://localhost:8000"
+    }
+    
+}
