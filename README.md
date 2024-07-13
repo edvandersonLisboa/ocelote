@@ -1,2 +1,2 @@
 # microservice_jambushop
-Construção de um microsserviço de loja virtual
+Arquitetura base para construção de uma api de micro serviço
